@@ -1,17 +1,12 @@
 
 
-  VITE v7.3.1  ready in 244 ms
+  VITE v7.3.1  ready in 168 ms
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
-11:35:29 PM [vite] (client) page reload src/scenes/PrologueScene.js
-11:35:31 PM [vite] (client) page reload src/scenes/PrologueScene.js (x2)
-11:35:34 PM [vite] (client) page reload src/scenes/PrologueScene.js (x3)
-11:35:34 PM [vite] (client) page reload src/scenes/PrologueScene.js (x4)
-11:35:36 PM [vite] (client) page reload src/scenes/PrologueScene.js (x5)
-11:35:45 PM [vite] (client) page reload src/scenes/PrologueScene.js (x6)
-11:39:14 PM [vite] (client) page reload src/scenes/PrologueScene.js (x7)
-11:39:20 PM [vite] (client) page reload src/scenes/PrologueScene.js (x8)
-11:44:56 PM [vite] (client) page reload src/scenes/PrologueScene.js (x9)
-11:45:02 PM [vite] (client) page reload src/scenes/PrologueScene.js (x10)
+10:52:34 PM [vite] (client) page reload src/scenes/PrologueScene.js
+10:52:37 PM [vite] (client) page reload src/scenes/PrologueScene.js (x2)
+10:52:44 PM [vite] (client) page reload src/scenes/PrologueScene.js (x3)
+10:52:49 PM [vite] (client) page reload src/scenes/PrologueScene.js (x4)
+10:52:52 PM [vite] (client) page reload src/scenes/PrologueScene.js (x5)

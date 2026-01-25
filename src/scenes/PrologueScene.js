@@ -11,18 +11,18 @@ export default class PrologueScene extends Phaser.Scene {
   preload() {
     // BGMファイルを読み込み
     console.log('Loading audio files...');
-    this.load.audio('dark-bgm', '/audio/dark-bgm.mp3');
-    this.load.audio('fantasy-bgm', '/audio/fantasy-bgm.mp3');
+    this.load.audio('dark-bgm', 'audio/dark-bgm.mp3');
+    this.load.audio('fantasy-bgm', 'audio/fantasy-bgm.mp3');
     
     // 背景画像を読み込み
     console.log('Loading background images...');
-    this.load.image('bg-room', '/images/room.png');
-    this.load.image('bg-train-morning', '/images/train_morning.png');
-    this.load.image('bg-office-morning', '/images/office_morning.png');
-    this.load.image('bg-office-night', '/images/office_night.png');
-    this.load.image('bg-train-night', '/images/train_night.png');
-    this.load.image('bg-dark', '/images/dark.png');
-    this.load.image('bg-agairud', '/images/agairud_login.png');
+    this.load.image('bg-room', 'images/room.png');
+    this.load.image('bg-train-morning', 'images/train_morning.png');
+    this.load.image('bg-office-morning', 'images/office_morning.png');
+    this.load.image('bg-office-night', 'images/office_night.png');
+    this.load.image('bg-train-night', 'images/train_night.png');
+    this.load.image('bg-dark', 'images/dark.png');
+    this.load.image('bg-agairud', 'images/agairud_login.png');
     
     this.load.on('filecomplete', (key) => {
       console.log('Loaded:', key);
@@ -43,17 +43,17 @@ export default class PrologueScene extends Phaser.Scene {
     },
     
     // 第1幕：AM 06:00 覚醒と絶望
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……う、あ……' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……う、あ……' },
     { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '', text: '（アラームを止める。画面には『06:00』の文字）' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……寝た気がしない。いや、一瞬も意識が途切れなかった' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '目を閉じても、頭の中でずっと今日のタスクの段取りが回っていた' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……あと1時間は寝れるはずだ。目だけ、目だけ瞑ろう……' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……ダメだ。あのバグ、昨日の修正で本当に直ったのか……？' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: 'あの資料、上司は納得するだろうか。クライアントは怒らないだろうか……' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……気がつけば、またアラームが鳴っている。心臓が嫌な速さで打っている' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……起きなきゃ。体が、冷たい泥のように重い' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '健康サプリ、ビタミン、……。これで、午前中は持つはずだ' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: 'フジ', text: '……よし。行こう' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……寝た気がしない。いや、一瞬も意識が途切れなかった' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '目を閉じても、頭の中でずっと今日のタスクの段取りが回っていた' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……あと1時間は寝れるはずだ。目だけ、目だけ瞑ろう……' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……ダメだ。あのバグ、昨日の修正で本当に直ったのか……？' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: 'あの資料、上司は納得するだろうか。クライアントは怒らないだろうか……' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……気がつけば、またアラームが鳴っている。心臓が嫌な速さで打っている' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……起きなきゃ。体が、冷たい泥のように重い' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '健康サプリ、ビタミン、……。これで、午前中は持つはずだ' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……よし。行こう' },
     
     // 選択肢2: 第2幕の前
     {
@@ -79,27 +79,27 @@ export default class PrologueScene extends Phaser.Scene {
     },
     
     // 第3幕：AM 09:30 無限のTODO
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: 'おはようございます……' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: 'おはようございます……' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（PCを起動する。未読のチャット通知が画面の端を埋め尽くす）' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……よし、今日のTODOリストをまとめ直そう' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '昨日の残り、さっき届いた割り込み、午後の定例会議の準備……' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……よし、今日のTODOリストをまとめ直そう' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '昨日の残り、さっき届いた割り込み、午後の定例会議の準備……' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（リストがどんどん長くなっていく。スクロールしても終わらない）' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……多いな。見るだけで、胃の奥がギュッと縮む' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……多いな。見るだけで、胃の奥がギュッと縮む' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '上司', text: 'フジ君、ちょっといいかな' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……はい、何でしょうか' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……はい、何でしょうか' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '上司', text: '例の件、君が出してくれた成果、評判いいよ。だからこれも追加で任せたい' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……承知しました。調整します' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……承知しました。調整します' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（成果を出せば出すほど、仕事が増えていく）' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（期待に応えれば応えるほど、自分の首が締まっていく）' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（……無限だ。このサイクルに、出口なんて最初からなかったんだ）' },
     
     // 第4幕：PM 14:00 孤独の燃料補給
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……もう14時か。午前中が終わったなんて信じられない' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: 'お昼、外に食べに行く時間が……いや、このメールを返してからにしよう' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……もう14時か。午前中が終わったなんて信じられない' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: 'お昼、外に食べに行く時間が……いや、このメールを返してからにしよう' },
     { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '', text: '（30分後。結局デスクで冷めたおにぎりを袋から出す）' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……味がしない。何を食べているのか、脳が認識していない' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '胃が重い。何かを摂取すること自体、体が拒絶している気がする' },
-    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: 'フジ', text: '……でも、エネルギーを入れないと。夜まで持たないんだ' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……味がしない。何を食べているのか、脳が認識していない' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '胃が重い。何かを摂取すること自体、体が拒絶している気がする' },
+    { background: '#1a1a2e', backgroundImage: 'bg-office-morning', speaker: '藤田', text: '……でも、エネルギーを入れないと。夜まで持たないんだ' },
     
     // 選択肢4: 第5幕の前
     {
@@ -109,9 +109,9 @@ export default class PrologueScene extends Phaser.Scene {
     },
     
     // 第5幕：PM 21:00 『本番』の始まり
-    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: 'フジ', text: '……ふぅ。やっと、静かになった' },
-    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: 'フジ', text: '日中は、目の前に来る仕事をスピーディーにこなすだけで終わる' },
-    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: 'フジ', text: '……ここからが、ようやく『自分の仕事』をする時間だ' },
+    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '藤田', text: '……ふぅ。やっと、静かになった' },
+    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '藤田', text: '日中は、目の前に来る仕事をスピーディーにこなすだけで終わる' },
+    { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '藤田', text: '……ここからが、ようやく『自分の仕事』をする時間だ' },
     { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '', text: '（エナジードリンクと、さらにサプリ。ここからが本番だ）' },
     { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '', text: '（頼られている。期待されている。僕がやらなきゃいけないんだ）' },
     { background: '#0a0a1e', backgroundImage: 'bg-office-night', speaker: '', text: '（僕が止まれば、チームが止まる。それだけは、絶対にいけない）' },
@@ -136,14 +136,14 @@ export default class PrologueScene extends Phaser.Scene {
     },
     
     // 第7幕：AM 01:45 崩壊
-    { background: '#050510', backgroundImage: 'bg-room', speaker: 'フジ', text: '……ただいま。……あぁ、食欲も、寝る気力すらない' },
-    { background: '#050510', backgroundImage: 'bg-room', speaker: 'フジ', text: '仕事のことだけが、頭の中で渦を巻いている' },
-    { background: '#050510', backgroundImage: 'bg-room', speaker: 'フジ', text: '……あれはやっただろうか。……大丈夫だろうか……' },
-    { background: '#050510', backgroundImage: 'bg-room', speaker: 'フジ', text: '……ちょっとだけ、PCを確認……' },
-    { background: '#050510', backgroundImage: 'bg-room', speaker: 'フジ', text: '……っ。急に、目の前が……' },
+    { background: '#050510', backgroundImage: 'bg-room', speaker: '藤田', text: '……ただいま。……あぁ、食欲も、寝る気力すらない' },
+    { background: '#050510', backgroundImage: 'bg-room', speaker: '藤田', text: '仕事のことだけが、頭の中で渦を巻いている' },
+    { background: '#050510', backgroundImage: 'bg-room', speaker: '藤田', text: '……あれはやっただろうか。……大丈夫だろうか……' },
+    { background: '#050510', backgroundImage: 'bg-room', speaker: '藤田', text: '……ちょっとだけ、PCを確認……' },
+    { background: '#050510', backgroundImage: 'bg-room', speaker: '藤田', text: '……っ。急に、目の前が……' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '...' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '......' },
-    { background: '#000000', backgroundImage: 'bg-dark', speaker: 'フジ', text: '真っ暗だ。……何も、見えな……' },
+    { background: '#000000', backgroundImage: 'bg-dark', speaker: '藤田', text: '真っ暗だ。……何も、見えな……' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（心臓の音が「ドクン……」と重く響き、完全に消失する）' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（完全な暗転。長い静寂）' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '...' },
@@ -160,19 +160,19 @@ export default class PrologueScene extends Phaser.Scene {
     
     // 第9幕：アジャドラとの邂逅
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: '……そんなところで寝ていると、本当に灰になってしまうドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'フジ', text: '……誰だ？ 放っておいてくれ。僕は、もう一歩も動けない' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……誰だ？ 放っておいてくれ。僕は、もう一歩も動けない' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: '動けないんじゃないドラ。君は、動く方向を間違えていただけだドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'ようこそ、アガイルドへ！ 自らを燃やし尽くし、変化を求めた旅人さんドラ！' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'フジ', text: 'アガイルド……？ 竜……？ 僕は、死んだのか？' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: 'ようこそ、アガイルドへ！ 自らを燃やし尽くし、変化を求めた旅人さんドラ！' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: 'アガイルド……？ 竜……？ 僕は、死んだのか？' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '死んじゃいないドラ。ここは、君のような『魂の停滞』に陥った者が、再生を待つ場所ドラ' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'ボクの名前はアジャドラ。君の『アジャイル（機敏な歩み）』を導く者だドラ！' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '君は、独りで全部を背負って戦ってきたんだね。本当に、よく頑張ったドラ' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'でも、その戦い方は、ここでは自分を傷つけるだけだドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'フジ', text: '……自分を傷つける……？ 僕は、ただ責任を果たそうと……' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……自分を傷つける……？ 僕は、ただ責任を果たそうと……' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'それは『責任』じゃなくて『呪い』だドラ。君は、自分を助けるのを忘れていたドラ' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '思い出させてあげるドラ。自分を活かし、仲間と共に生きるための、本当の力を' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'さあ、目を開けるドラ！ 変化を恐れない、あなたの本当の物語を始めるドラ！' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'フジ', text: '……本当の……物語……' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……本当の……物語……' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '', text: '（まばゆい光が画面を包み込み、異世界の草原へとフェードイン）' }
   ];
 
