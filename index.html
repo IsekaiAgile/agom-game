@@ -13,7 +13,13 @@
       padding: 0;
       box-sizing: border-box;
     }
-    html, body {
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: fixed;
+    }
+    body {
       width: 100%;
       height: 100%;
       overflow: hidden;
@@ -21,38 +27,35 @@
       font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
     #game-container {
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh; /* 動的ビューポート高さ */
+      position: fixed;
+      top: 0;
+      left: 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
     canvas {
       display: block;
-      max-width: 100%;
-      max-height: 100%;
-      width: auto !important;
-      height: auto !important;
-    }
-    
-    /* モバイル対応 */
-    @media (max-width: 768px) {
-      body {
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-      }
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100vw;
+      max-height: 100vh;
+      max-height: 100dvh;
+      object-fit: contain;
     }
   </style>
-  <script type="module" crossorigin src="/agom-game/assets/index-VX_VTFdy.js"></script>
+  <script type="module" crossorigin src="/agom-game/assets/index-bNGefiy_.js"></script>
 </head>
 <body>
   <div id="game-container"></div>
