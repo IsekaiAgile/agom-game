@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 export default class PrologueScene extends Phaser.Scene {
-  constructor() {
+    constructor() {
     super('PrologueScene');
     this.currentLine = 0;
     this.isTyping = false;
@@ -155,28 +155,90 @@ export default class PrologueScene extends Phaser.Scene {
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（成果を出すほどに、自分を絞め殺す縄は太くなっていく）' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（……僕は、自分で自分を、この真っ暗な場所に追い込んだんだ）' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（……もう、いいよな。……これで、終わりに……）' },
-    { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（遠くから、小さく温かい橙色の光が差してくる）' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '...' },
+    { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '......' },
     
-    // 第9幕：アジャドラとの邂逅
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: '……そんなところで寝ていると、本当に灰になってしまうドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……誰だ？ 放っておいてくれ。僕は、もう一歩も動けない' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: '動けないんじゃないドラ。君は、動く方向を間違えていただけだドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '？？？', text: 'ようこそ、アガイルドへ！ 自らを燃やし尽くし、変化を求めた旅人さんドラ！' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: 'アガイルド……？ 竜……？ 僕は、死んだのか？' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '死んじゃいないドラ。ここは、君のような『魂の停滞』に陥った者が、再生を待つ場所ドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'ボクの名前はアジャドラ。君の『アジャイル（機敏な歩み）』を導く者だドラ！' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '君は、独りで全部を背負って戦ってきたんだね。本当に、よく頑張ったドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'でも、その戦い方は、ここでは自分を傷つけるだけだドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……自分を傷つける……？ 僕は、ただ責任を果たそうと……' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'それは『責任』じゃなくて『呪い』だドラ。君は、自分を助けるのを忘れていたドラ' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: '思い出させてあげるドラ。自分を活かし、仲間と共に生きるための、本当の力を' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'さあ、目を開けるドラ！ 変化を恐れない、あなたの本当の物語を始めるドラ！' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……本当の……物語……' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '', text: '（まばゆい光が画面を包み込み、異世界の草原へとフェードイン）' }
+    // 転生の間へ
+    { 
+      type: 'sceneTransition',
+      nextScene: 'TrialScene',
+      text: '意識が遠のいていく......'
+    }
   ];
 
   create() {
+    // 音声コンテキストを有効化するためのオーバーレイ
+    this.audioUnlocked = false;
+    this.showAudioUnlockScreen();
+  }
+
+  showAudioUnlockScreen() {
+    // 半透明の黒い背景
+    const overlay = this.add.rectangle(640, 360, 1280, 720, 0x000000, 0.9);
+    overlay.setDepth(1000);
+
+    // タイトルテキスト
+    const title = this.add.text(640, 250, 'AGOM\nアガイルドの炎', {
+      fontSize: '64px',
+      color: '#ff6400',
+      fontFamily: 'sans-serif',
+      fontStyle: 'bold',
+      align: 'center'
+    }).setOrigin(0.5);
+    title.setDepth(1001);
+
+    // 説明テキスト
+    const subtitle = this.add.text(640, 400, '音楽を含みます', {
+                fontSize: '24px',
+      color: '#ffffff',
+      fontFamily: 'sans-serif',
+      align: 'center'
+    }).setOrigin(0.5);
+    subtitle.setDepth(1001);
+
+    // タップして開始ボタン
+    const button = this.add.rectangle(640, 500, 400, 80, 0xff6400);
+    button.setDepth(1001);
+    button.setInteractive({ useHandCursor: true });
+
+    const buttonText = this.add.text(640, 500, 'タップして開始', {
+      fontSize: '32px',
+      color: '#000000',
+      fontFamily: 'sans-serif',
+      fontStyle: 'bold'
+    }).setOrigin(0.5);
+    buttonText.setDepth(1002);
+
+    // ホバーエフェクト
+    button.on('pointerover', () => {
+      button.setFillStyle(0xffaa00);
+    });
+    button.on('pointerout', () => {
+      button.setFillStyle(0xff6400);
+    });
+
+    // クリックイベント
+    button.on('pointerdown', () => {
+      // 音声コンテキストを有効化
+      if (this.sound.context) {
+        this.sound.context.resume();
+      }
+      
+      this.audioUnlocked = true;
+      
+      // オーバーレイを削除
+      overlay.destroy();
+      title.destroy();
+      subtitle.destroy();
+      button.destroy();
+      buttonText.destroy();
+      
+      // ゲーム開始
+      this.startGame();
+    });
+  }
+
+  startGame() {
     // 背景画像（最初は room.png を表示）
     this.backgroundImage = this.add.image(640, 360, 'bg-room');
     this.backgroundImage.setDisplaySize(1280, 720);
@@ -214,13 +276,13 @@ export default class PrologueScene extends Phaser.Scene {
     this.clickIcon.setVisible(false);
 
     // 点滅アニメーション
-    this.tweens.add({
+        this.tweens.add({
       targets: this.clickIcon,
       alpha: 0.3,
       duration: 500,
-      yoyo: true,
-      repeat: -1
-    });
+            yoyo: true,
+            repeat: -1
+        });
 
     // 選択肢UI（最初は非表示）
     this.createChoiceUI();
@@ -228,7 +290,7 @@ export default class PrologueScene extends Phaser.Scene {
     // クリックイベント
     this.input.on('pointerdown', () => this.advanceText());
 
-    // 最初のテキストを表示
+        // 最初のテキストを表示
     this.showLine();
   }
 
@@ -301,23 +363,23 @@ export default class PrologueScene extends Phaser.Scene {
 
     const line = this.scenario[this.currentLine];
 
+    // シーン遷移の場合
+    if (line.type === 'sceneTransition') {
+      this.transitionToNextScene(line);
+      return;
+    }
+
     // 選択肢の場合
     if (line.type === 'choice') {
       this.showChoice(line);
-      return;
-    }
+            return;
+        }
 
     // BGMの切り替え（テキスト内容で判定）
     // 第8幕：虚無の淵の開始でBGM停止
     if (line.text && line.text.includes('……ああ、そうか。こういうことだったのか')) {
       console.log('Stopping BGM - Scene 8 detected');
       this.stopBGM();
-    }
-    
-    // 第9幕：アジャドラ登場でfantasy-bgm開始
-    if (line.text && line.text.includes('……そんなところで寝ていると、本当に灰になってしまうドラ')) {
-      console.log('Starting fantasy-bgm - Scene 9 detected');
-      this.playBGM('fantasy-bgm');
     }
 
     // 背景色を変更
@@ -339,8 +401,8 @@ export default class PrologueScene extends Phaser.Scene {
         fontFamily: 'sans-serif',
         fontStyle: 'italic',
         wordWrap: { width: 1080 }
-      });
-    } else {
+            });
+        } else {
       this.dialogueText.setStyle({
         fontSize: '28px',
         color: '#ffffff',
@@ -377,7 +439,7 @@ export default class PrologueScene extends Phaser.Scene {
 
         if (charIndex >= line.text.length) {
           typingTimer.remove();
-          this.isTyping = false;
+            this.isTyping = false;
           this.clickIcon.setVisible(true);
         }
       },
@@ -395,8 +457,43 @@ export default class PrologueScene extends Phaser.Scene {
     this.showLine();
   }
 
+  transitionToNextScene(line) {
+    console.log('Transitioning to:', line.nextScene);
+    
+    // BGMをフェードアウト
+    if (this.currentBGM && this.currentBGM.isPlaying) {
+      this.tweens.add({
+        targets: this.currentBGM,
+        volume: 0,
+        duration: 1000,
+        onComplete: () => {
+          this.currentBGM.stop();
+        }
+      });
+    }
+    
+    // 画面をフェードアウト
+    this.cameras.main.fadeOut(1000, 0, 0, 0);
+    
+    // フェードアウト完了後にシーン遷移
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.start(line.nextScene);
+    });
+    
+    // 遷移メッセージを表示
+    if (line.text) {
+      this.dialogueText.setText(line.text);
+    }
+  }
+
   playBGM(key) {
     console.log('playBGM called with key:', key);
+    
+    // 音声コンテキストが有効化されていない場合は何もしない
+    if (!this.audioUnlocked) {
+      console.log('Audio not unlocked yet');
+      return;
+    }
     
     // 既に同じBGMが再生中なら何もしない
     if (this.currentBGM && this.currentBGM.key === key && this.currentBGM.isPlaying) {
@@ -412,10 +509,14 @@ export default class PrologueScene extends Phaser.Scene {
 
     // 新しいBGMを再生
     if (key) {
-      console.log('Creating and playing new BGM:', key);
-      this.currentBGM = this.sound.add(key, { loop: true, volume: 0.5 });
-      this.currentBGM.play();
-      console.log('BGM playing:', this.currentBGM.isPlaying);
+      try {
+        console.log('Creating and playing new BGM:', key);
+        this.currentBGM = this.sound.add(key, { loop: true, volume: 0.5 });
+        this.currentBGM.play();
+        console.log('BGM playing:', this.currentBGM.isPlaying);
+      } catch (error) {
+        console.error('Error playing BGM:', error);
+      }
     }
   }
 
@@ -528,5 +629,5 @@ export default class PrologueScene extends Phaser.Scene {
     retryButton.on('pointerdown', () => {
       this.scene.restart();
     });
-  }
+    }
 }
