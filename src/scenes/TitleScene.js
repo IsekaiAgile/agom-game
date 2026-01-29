@@ -12,8 +12,11 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   create() {
-    // 背景（とりあえずグラデーション）
-    const bg = this.add.rectangle(640, 360, 1280, 720, 0x2a1a3e);
+    // 空の背景（動画の最後と統一）
+    const bg = this.add.rectangle(640, 360, 1280, 720, 0x87CEEB); // 空色
+    
+    // または背景画像
+    // const bg = this.add.image(640, 360, 'title-sky-bg');
     
     // タイトルロゴ
     const title = this.add.text(640, 250, 'AGOM', {

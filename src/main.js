@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import OpeningVideoScene from './scenes/OpeningVideoScene';
 import LogoScene from './scenes/LogoScene';
 import TitleScene from './scenes/TitleScene';
 import PrologueScene from './scenes/PrologueScene';
@@ -17,7 +18,15 @@ const config = {
   height: 720,
   parent: 'game-container',
   backgroundColor: '#000000',
-  scene: [LogoScene, TitleScene, PrologueScene, TrialScene, AjadraScene, DebugMenuScene],
+  scene: [
+    LogoScene,           // 異世界アジャイル
+    OpeningVideoScene,   // オープニング動画
+    TitleScene,          // タイトル画面
+    DebugMenuScene,
+    PrologueScene,
+    TrialScene,
+    AjadraScene
+  ],
   physics: {
     default: 'arcade',
     arcade: {
