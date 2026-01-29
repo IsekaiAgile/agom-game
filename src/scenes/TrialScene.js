@@ -82,9 +82,15 @@ export default class TrialScene extends Phaser.Scene {
       if (isTyping) return;
       
       if (currentIndex >= introTexts.length) {
+        // クリーンアップ
         bg.destroy();
         text.destroy();
         clickIcon.destroy();
+        
+        // イベントリスナーを削除（重要！）
+        this.input.off('pointerdown', showNext);
+        
+        // ゲーム開始
         this.startGame();
         return;
       }
@@ -96,7 +102,7 @@ export default class TrialScene extends Phaser.Scene {
     // 最初のテキスト表示
     showNext();
     
-    // クリックイベント
+    // クリックイベント登録（1回だけ）
     this.input.on('pointerdown', showNext);
   }
 

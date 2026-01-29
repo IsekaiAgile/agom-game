@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import LogoScene from './scenes/LogoScene';
+import TitleScene from './scenes/TitleScene';
 import PrologueScene from './scenes/PrologueScene';
 import TrialScene from './scenes/TrialScene';
 import AjadraScene from './scenes/AjadraScene';
@@ -15,7 +17,7 @@ const config = {
   height: 720,
   parent: 'game-container',
   backgroundColor: '#000000',
-  scene: [PrologueScene, TrialScene, AjadraScene, DebugMenuScene],
+  scene: [LogoScene, TitleScene, PrologueScene, TrialScene, AjadraScene, DebugMenuScene],
   physics: {
     default: 'arcade',
     arcade: {

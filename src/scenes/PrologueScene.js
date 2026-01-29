@@ -166,10 +166,18 @@ export default class PrologueScene extends Phaser.Scene {
     }
   ];
 
-  create() {
-    // 音声コンテキストを有効化するためのオーバーレイ
-    this.audioUnlocked = false;
-    this.showAudioUnlockScreen();
+    create() {
+    console.log('PrologueScene: create started');
+    
+    // 音声コンテキストを有効化
+    if (this.sound.context) {
+      this.sound.context.resume();
+    }
+    
+    this.audioUnlocked = true;
+    
+    // 直接ゲーム開始
+    this.startGame();
   }
 
   showAudioUnlockScreen() {
@@ -270,7 +278,7 @@ export default class PrologueScene extends Phaser.Scene {
 
     // クリック待ちアイコン
     this.clickIcon = this.add.text(1150, 680, '▼', {
-      fontSize: '24px',
+                fontSize: '24px',
       color: '#ff6400'
     });
     this.clickIcon.setVisible(false);
