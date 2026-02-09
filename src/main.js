@@ -1,11 +1,23 @@
 import Phaser from 'phaser';
-import OpeningVideoScene from './scenes/OpeningVideoScene';
 import LogoScene from './scenes/LogoScene';
-import TitleScene from './scenes/TitleScene';
+import OpeningVideoScene from './scenes/OpeningVideoScene';
+import DebugMenuScene from './scenes/DebugMenuScene';
 import PrologueScene from './scenes/PrologueScene';
+import EligiaTitleScene from './scenes/EligiaTitleScene';
+import DarknessScene from './scenes/DarknessScene';
+import LeiguaScene from './scenes/LeiguaScene';
+import ChaseScene from './scenes/ChaseScene';
+import AgairudoTitleScene from './scenes/AgairudoTitleScene';
 import TrialScene from './scenes/TrialScene';
 import AjadraScene from './scenes/AjadraScene';
-import DebugMenuScene from './scenes/DebugMenuScene';
+import DoorSelectionScene from './scenes/DoorSelectionScene';
+import JobConfirmScene from './scenes/JobConfirmScene';
+import TownScene from './scenes/TownScene';
+
+// 試練シーンは後で実装
+// import WarriorTrialScene from './scenes/WarriorTrialScene';
+// import MageTrialScene from './scenes/MageTrialScene';
+// import ScrumMasterTrialScene from './scenes/ScrumMasterTrialScene';
 
 // デバッグ用設定
 const DEBUG_MODE = false; // true → false
@@ -19,13 +31,24 @@ const config = {
   parent: 'game-container',
   backgroundColor: '#000000',
   scene: [
-    LogoScene,           // 異世界アジャイル
-    OpeningVideoScene,   // オープニング動画
-    TitleScene,          // タイトル画面
+    LogoScene,
+    OpeningVideoScene,
     DebugMenuScene,
     PrologueScene,
-    TrialScene,
-    AjadraScene
+    EligiaTitleScene,
+    DarknessScene,
+    LeiguaScene,
+    ChaseScene,
+    AgairudoTitleScene,
+    TrialScene,         // これは後で ChaseScene に改造
+    AjadraScene,
+    DoorSelectionScene,
+    JobConfirmScene,
+    TownScene
+    // 試練シーンは後で追加
+    // WarriorTrialScene,
+    // MageTrialScene,
+    // ScrumMasterTrialScene
   ],
   physics: {
     default: 'arcade',

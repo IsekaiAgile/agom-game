@@ -25,22 +25,26 @@ ITエンジニアの藤田雄真（ふじた ゆうま）は、過労で意識�
 
 ### ✅ 完成
 - **ロゴシーン**: 「異世界アジャイル」制作会社ロゴ
-- **タイトル画面**: 「アガイルド〜炎の王国〜」
-- **プロローグシーン**: 78行の完全なシナリオ（選択肢システム付き）
+- **オープニング動画**: オープニングムービー（スキップ対応、opening-theme BGM）
+- **プロローグシーン**: 完全なシナリオ（選択肢システム付き）
+- **エリギアタイトル**: 異世界エリギアへの導入
+- **暗転シーン**: トンネル演出
+- **レイグアシーン**: 異世界レイグアでのストーリー
+- **追いかけゲーム**: チェイスシーン
 - **転生の間**: 横スクロールアクションゲーム
-  - 導入テキスト（「……ここは、どこだ……？」）
   - パララックス背景
   - BGM & 光のエフェクト
   - プレイヤー、敵、ゴール
 - **アジャドラシーン**: アジャドラとの出会い
+- **扉選択・職業確定**: 職業選択フロー
+- **オワリの街**: 町シーン
 - **BGMシステム**: シーンごとの音楽切り替え
 - **デバッグメニュー**: Dキーで各シーンに即座に移動可能
 
-### 🔄 実装中
+### 🔄 実装中・予定
 - 転生の間の強化（敵の挙動、アイテム、ギミック）
-- 異世界本編
+- 職業別試練（戦士・魔導士・スクラムマスター）
 - キャラクター画像の実装
-- タイルセットによる地面の装飾
 
 ---
 
@@ -61,29 +65,45 @@ agom-game/
 │   ├── audio/               # BGM・効果音
 │   │   ├── dark-bgm.mp3
 │   │   ├── fantasy-bgm.mp3
+│   │   ├── opening-theme.mp3
 │   │   └── trial-bgm.mp3
-│   └── images/              # 背景・キャラクター画像
-│       ├── room.png
-│       ├── train_morning.png
-│       ├── office_morning.png
-│       ├── office_night.png
-│       ├── train_night.png
-│       ├── dark.png
-│       ├── agairud_login.png
-│       └── trial/
-│           ├── bg-far.png
-│           ├── bg-mid.png
-│           ├── trial-man.png
-│           └── trial-tileset.png
+│   ├── images/              # 背景・キャラクター画像
+│   │   ├── room.png
+│   │   ├── train_morning.png
+│   │   ├── train_night.png
+│   │   ├── office_morning.png
+│   │   ├── office_night.png
+│   │   ├── dark.png
+│   │   ├── agairud_login.png
+│   │   ├── agom-title-logo.png
+│   │   ├── isekai-agile-logo.png
+│   │   └── trial/
+│   │       ├── bg-far.png
+│   │       ├── bg-mid.png
+│   │       ├── trial-man.png
+│   │       └── trial-tileset.png
+│   └── videos/              # 動画
+│       └── opening.mp4
 ├── src/
 │   ├── main.js              # エントリーポイント
 │   └── scenes/
-│       ├── LogoScene.js     # 制作会社ロゴ
-│       ├── TitleScene.js    # タイトル画面
-│       ├── PrologueScene.js # プロローグ（78行シナリオ）
-│       ├── TrialScene.js    # 転生の間（横スクロール）
-│       ├── AjadraScene.js   # アジャドラとの出会い
-│       └── DebugMenuScene.js # デバッグメニュー
+│       ├── LogoScene.js         # 制作会社ロゴ
+│       ├── OpeningVideoScene.js # オープニング動画
+│       ├── PrologueScene.js     # プロローグ
+│       ├── EligiaTitleScene.js  # エリギアタイトル
+│       ├── DarknessScene.js     # 暗転（トンネル）
+│       ├── LeiguaScene.js       # レイグア
+│       ├── ChaseScene.js        # 追いかけゲーム
+│       ├── AgairudoTitleScene.js# アガイルドタイトル
+│       ├── TrialScene.js        # 転生の間（横スクロール）
+│       ├── AjadraScene.js       # アジャドラとの出会い
+│       ├── DoorSelectionScene.js# 扉選択
+│       ├── JobConfirmScene.js   # 職業確定
+│       ├── TownScene.js         # オワリの街
+│       ├── WarriorTrialScene.js # 戦士の試練（準備中）
+│       ├── MageTrialScene.js    # 魔導士の試練（準備中）
+│       ├── ScrumMasterTrialScene.js # スクラムマスターの試練（準備中）
+│       └── DebugMenuScene.js    # デバッグメニュー
 └── index.html
 ```
 
@@ -91,14 +111,16 @@ agom-game/
 
 ## 🎯 開発ロードマップ
 
-### フェーズ1: 体験版（Chokaigi 2026年4月）
+### フェーズ1: 体験版（ニコニコ超会議 2026年4月）
 - [x] ロゴ画面
-- [x] タイトル画面
+- [x] オープニング動画
 - [x] プロローグ完成
+- [x] エリギア・レイグア・追いかけゲーム
 - [x] 転生の間実装
 - [x] アジャドラシーン実装
+- [x] 扉選択・職業確定・オワリの街
+- [ ] 職業別試練（戦士・魔導士・スクラムマスター）
 - [ ] 転生の間の強化（敵、アイテム、ギミック）
-- [ ] 異世界チュートリアル（3-5分）
 - [ ] キャラクター画像実装
 - [ ] モバイル対応最適化
 
@@ -147,11 +169,16 @@ npm run preview
 ### BGM
 - `dark-bgm.mp3`: プロローグ（暗い雰囲気）
 - `fantasy-bgm.mp3`: タイトル、アジャドラシーン（ファンタジー）
+- `opening-theme.mp3`: オープニング動画
 - `trial-bgm.mp3`: 転生の間（神秘的）
+
+### 動画
+- `opening.mp4`: オープニングムービー
 
 ### 背景画像
 - 現実世界: 部屋、電車、オフィス
 - 異世界: アガイルド、転生の間
+- ロゴ: isekai-agile-logo.png, agom-title-logo.png
 
 ---
 
@@ -175,19 +202,23 @@ npm run preview
 ```
 起動
  ↓
-異世界アジャイルロゴ（自動）
+異世界アジャイルロゴ（クリックで開始）
  ↓
-タイトル画面（クリック待ち）
+オープニング動画（SKIP可）
  ↓
-プロローグ（ITエンジニアの過労死）
+プロローグ（ITエンジニアの過労）
  ↓
-転生の間（横スクロールアクション）
+エリギアタイトル
  ↓
-アジャドラとの出会い
+暗転（トンネル）
  ↓
-異世界転生（実装予定）
+レイグア
  ↓
-冒険開始（実装予定）
+追いかけゲーム
+ ↓
+オワリの街
+ ↓
+（別ルート）転生の間 → アジャドラ → 扉選択 → 職業確定 → オワリの街
 ```
 
 ---
@@ -214,6 +245,11 @@ MIT License
 ---
 
 ## 📅 更新履歴
+
+### 2026-02-09
+- READMEを現状に合わせて更新
+- オープニング動画、エリギア・レイグア・追いかけゲーム、オワリの街を追加
+- プロジェクト構造・ゲームフローを更新
 
 ### 2026-01-29
 - ロゴシーン実装（異世界アジャイル）
@@ -244,7 +280,7 @@ MIT License
 
 ## 🎯 展示予定
 
-- **Chokaigi 2026**: 2026年4月（体験版）
+- **ニコニコ超会議 2026**: 2026年4月（体験版）
 - **Tokyo Game Show 2026**: 2026年9月（完全版予定）
 
 ---

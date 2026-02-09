@@ -345,11 +345,24 @@ export default class TrialScene extends Phaser.Scene {
     buttonText.setDepth(102);
     
     button.on('pointerdown', () => {
+      console.log('=== CLEAR BUTTON CLICKED ===');
+      console.log('Current scene:', this.scene.key);
+      console.log('Transitioning to: AjadraScene');
+      
       // シーン遷移前に確実に停止
       if (this.bgm) {
         this.bgm.stop();
+        console.log('Trial BGM stopped');
       }
-      this.scene.start('AjadraScene');
+      
+      // フェードアウトしてから遷移
+      this.cameras.main.fadeOut(500, 0, 0, 0);
+      
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        console.log('Fade out complete, starting AjadraScene');
+        this.scene.stop('TrialScene');
+        this.scene.start('AjadraScene');
+      });
     });
   }
 

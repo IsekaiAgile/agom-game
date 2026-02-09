@@ -35,16 +35,20 @@ export default class PrologueScene extends Phaser.Scene {
 
   // 『AGOM - アガイルドの炎』プロローグ完全版：終わらない円環
   scenario = [
+    // 第1幕：夢から覚める
+    { background: '#1a1a2e', backgroundImage: 'bg-room', speaker: '藤田', text: '今の女の子は誰だ？' },
+    { background: '#1a1a2e', backgroundImage: 'bg-room', speaker: '藤田', text: '夢か……夢なんて久しぶりに見た気がする' },
+    { background: '#000000', backgroundImage: null, speaker: '', text: '...' },
+    
     // 選択肢1: 第1幕の前
     {
       type: 'choice',
-      question: '朝、目覚めますか？',
+      question: '朝、目覚ましが鳴る。起きますか？',
       gameOverText: 'あなたは永遠に眠り続けた。\n目覚めることは、二度となかった...'
     },
     
     // 第1幕：AM 06:00 覚醒と絶望
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……う、あ……' },
-    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '', text: '（アラームを止める。画面には『06:00』の文字）' },
+    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……う、あ……' },    { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '', text: '（アラームを止める。画面には『06:00』の文字）' },
     { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……寝た気がしない。いや、一瞬も意識が途切れなかった' },
     { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '目を閉じても、頭の中でずっと今日のタスクの段取りが回っていた' },
     { background: '#0f0f1e', backgroundImage: 'bg-room', speaker: '藤田', text: '……あと1時間は寝れるはずだ。目だけ、目だけ瞑ろう……' },
@@ -158,10 +162,45 @@ export default class PrologueScene extends Phaser.Scene {
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '...' },
     { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '......' },
     
+    // Act 8 の追加シナリオ
+    { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: 'ベッドに倒れ込む。\n視界がぼやける......。' },
+    { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '......' },
+    { background: '#000000', backgroundImage: 'bg-dark', speaker: '', text: '（ん......？）' },
+    { background: '#0a0a1a', backgroundImage: 'bg-dark', speaker: '', text: '（何か......光っている......？）' },
+    // ここでアジャドラが現れる演出
+    { 
+      type: 'ajadraAppears',
+      background: '#0a0a1a',
+      backgroundImage: 'bg-dark',
+      speaker: '',
+      text: '',
+      choices: null
+    },
+    { background: '#0a0a1a', backgroundImage: 'bg-dark', speaker: 'フジ', text: '......あれは......何だ......？' },
+    { background: '#0a0a1a', backgroundImage: 'bg-dark', speaker: 'フジ', text: '待って......' },
+    // プレイヤーが手を伸ばす
+    { 
+      type: 'reachOut',
+      background: '#0a0a1a',
+      backgroundImage: 'bg-dark',
+      speaker: '',
+      text: '',
+      choices: null
+    },
+    // 暗転
+    { 
+      type: 'fadeToBlack',
+      background: '#000000',
+      backgroundImage: 'bg-dark',
+      speaker: '',
+      text: '',
+      choices: null
+    },
+    
     // 転生の間へ
     { 
       type: 'sceneTransition',
-      nextScene: 'TrialScene',
+      nextScene: 'EligiaTitleScene',
       text: '意識が遠のいていく......'
     }
   ];
@@ -377,6 +416,24 @@ export default class PrologueScene extends Phaser.Scene {
       return;
     }
 
+    // アジャドラ登場演出
+    if (line.type === 'ajadraAppears') {
+      this.showAjadraAppears();
+      return;
+    }
+
+    // 手を伸ばす演出
+    if (line.type === 'reachOut') {
+      this.showReachOut();
+      return;
+    }
+
+    // 暗転演出
+    if (line.type === 'fadeToBlack') {
+      this.showFadeToBlack();
+      return;
+    }
+
     // 選択肢の場合
     if (line.type === 'choice') {
       this.showChoice(line);
@@ -465,6 +522,111 @@ export default class PrologueScene extends Phaser.Scene {
     this.showLine();
   }
 
+  showAjadraAppears() {
+    // UIを隠す
+    this.textWindow.setVisible(false);
+    this.speakerText.setVisible(false);
+    this.dialogueText.setVisible(false);
+    this.clickIcon.setVisible(false);
+    
+    // アジャドラの絵文字を中央に表示
+    const ajadra = this.add.text(640, 360, '🐉', {
+      fontSize: '120px'
+    }).setOrigin(0.5);
+    ajadra.setAlpha(0);
+    ajadra.setDepth(100);
+    
+    // 光のエフェクト
+    const light = this.add.rectangle(640, 360, 800, 800, 0xffaa00, 0.3);
+    light.setAlpha(0);
+    light.setDepth(99);
+    
+    // フェードイン
+    this.tweens.add({
+      targets: [ajadra, light],
+      alpha: 1,
+      duration: 2000,
+      ease: 'Power2',
+      onComplete: () => {
+        // 3秒後に次のシーンへ
+        this.time.delayedCall(3000, () => {
+          this.tweens.add({
+            targets: [ajadra, light],
+            alpha: 0,
+            duration: 1500,
+            onComplete: () => {
+              ajadra.destroy();
+              light.destroy();
+              this.currentLine++;
+              this.showLine();
+            }
+          });
+        });
+      }
+    });
+  }
+
+  showReachOut() {
+    // UIを隠す
+    this.textWindow.setVisible(false);
+    this.speakerText.setVisible(false);
+    this.dialogueText.setVisible(false);
+    this.clickIcon.setVisible(false);
+    
+    // 手を伸ばす演出（テキスト）
+    const reachText = this.add.text(640, 360, '（手を伸ばす......）', {
+      fontSize: '36px',
+      color: '#ffffff',
+      fontFamily: 'sans-serif',
+      fontStyle: 'italic'
+    }).setOrigin(0.5);
+    reachText.setAlpha(0);
+    reachText.setDepth(100);
+    
+    // フェードイン
+    this.tweens.add({
+      targets: reachText,
+      alpha: 1,
+      duration: 1500,
+      onComplete: () => {
+        // 2秒後に次のシーンへ
+        this.time.delayedCall(2000, () => {
+          this.tweens.add({
+            targets: reachText,
+            alpha: 0,
+            duration: 1000,
+            onComplete: () => {
+              reachText.destroy();
+              this.currentLine++;
+              this.showLine();
+            }
+          });
+        });
+      }
+    });
+  }
+
+  showFadeToBlack() {
+    // 画面を完全に暗転
+    const blackOverlay = this.add.rectangle(640, 360, 1280, 720, 0x000000);
+    blackOverlay.setAlpha(0);
+    blackOverlay.setDepth(200);
+    
+    // フェードアウト
+    this.tweens.add({
+      targets: blackOverlay,
+      alpha: 1,
+      duration: 2000,
+      onComplete: () => {
+        // 1秒後に次のシーンへ
+        this.time.delayedCall(1000, () => {
+          this.currentLine++;
+          this.showLine();
+        });
+      }
+    });
+  }
+
   transitionToNextScene(line) {
     console.log('Transitioning to:', line.nextScene);
     
@@ -481,10 +643,11 @@ export default class PrologueScene extends Phaser.Scene {
     }
     
     // 画面をフェードアウト
-    this.cameras.main.fadeOut(1000, 0, 0, 0);
+    this.cameras.main.fadeOut(2000, 0, 0, 0);
     
     // フェードアウト完了後にシーン遷移
     this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.stop('PrologueScene');
       this.scene.start(line.nextScene);
     });
     

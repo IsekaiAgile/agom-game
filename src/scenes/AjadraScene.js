@@ -28,11 +28,11 @@ export default class AjadraScene extends Phaser.Scene {
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'さあ、目を開けるドラ！ 変化を恐れない、あなたの本当の物語を始めるドラ！' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '藤田', text: '……本当の……物語……' },
     { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '', text: '（まばゆい光が画面を包み込む）' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '', text: '...' },
-    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: '', text: '......' },
+    { background: '#2a1a3e', backgroundImage: 'bg-agairud', speaker: 'アジャドラ', text: 'さあ、あなたの道を選ぶドラ！' },
     { 
-      type: 'nameReveal',
-      text: 'ん、何か声がしたような……'
+      type: 'sceneTransition',
+      nextScene: 'DoorSelectionScene',
+      text: '目の前に3つの扉が現れる......'
     }
   ];
 
@@ -97,6 +97,12 @@ export default class AjadraScene extends Phaser.Scene {
     }
     
     const line = this.scenario[this.currentLine];
+    
+    // シーン遷移の場合
+    if (line.type === 'sceneTransition') {
+      this.transitionToNextScene(line);
+      return;
+    }
     
     // 名前表示形式の場合
     if (line.type === 'nameReveal') {
@@ -209,6 +215,36 @@ export default class AjadraScene extends Phaser.Scene {
   stopBGM() {
     if (this.bgm && this.bgm.isPlaying) {
       this.bgm.stop();
+    }
+  }
+
+  transitionToNextScene(line) {
+    console.log('Transitioning to:', line.nextScene);
+    
+    // BGMをフェードアウト
+    if (this.bgm && this.bgm.isPlaying) {
+      this.tweens.add({
+        targets: this.bgm,
+        volume: 0,
+        duration: 1000,
+        onComplete: () => {
+          this.bgm.stop();
+        }
+      });
+    }
+    
+    // 画面をフェードアウト
+    this.cameras.main.fadeOut(1000, 0, 0, 0);
+    
+    // フェードアウト完了後にシーン遷移
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.stop('AjadraScene');
+      this.scene.start(line.nextScene);
+    });
+    
+    // 遷移メッセージを表示
+    if (line.text) {
+      this.dialogueText.setText(line.text);
     }
   }
 }
