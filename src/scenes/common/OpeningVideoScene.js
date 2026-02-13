@@ -15,11 +15,18 @@ export default class OpeningVideoScene extends Phaser.Scene {
   create() {
     console.log('OpeningVideoScene: create started');
     
-    // オープニングテーマを再生
-    this.openingBgm = this.sound.add('opening-theme', {
-      volume: 0.5
-    });
-    this.openingBgm.play();
+    // オープニングテーマを再生（グローバルに保存）
+    if (!this.game.registry.get('openingBGM')) {
+      this.openingBgm = this.sound.add('opening-theme', {
+        volume: 0.5,
+        loop: true  // ← ループ再生に変更
+      });
+      this.openingBgm.play();
+      
+      // グローバルに保存
+      this.game.registry.set('openingBGM', this.openingBgm);
+      console.log('Opening BGM started and saved to registry');
+    }
     
     // 動画を再生（音声はミュート）
     const video = this.add.video(640, 360, 'opening');
@@ -41,12 +48,12 @@ export default class OpeningVideoScene extends Phaser.Scene {
     skipText.on('pointerover', () => skipText.setAlpha(1));
     skipText.on('pointerout', () => skipText.setAlpha(0.7));
     
-    // スキップイベント
+    // スキップイベント（BGMは継続）
     skipText.on('pointerdown', () => {
-      this.openingBgm.stop();
+      // BGMは停止しない（継続）
       video.stop();
       this.scene.stop('OpeningVideoScene');
-      this.scene.start('PrologueScene');
+      this.scene.start('TitleScene');  // ← TitleSceneへ
     });
     
     // 動画終了時の処理
@@ -60,20 +67,8 @@ export default class OpeningVideoScene extends Phaser.Scene {
   showTitleScreen(video) {
     console.log('Showing title screen overlay');
     
-    // オープニングテーマが再生中ならタイトルBGMへ切り替え
-    if (this.openingBgm && this.openingBgm.isPlaying) {
-      this.tweens.add({
-        targets: this.openingBgm,
-        volume: 0,
-        duration: 2000,
-        onComplete: () => {
-          this.openingBgm.stop();
-          this.startTitleBgm();
-        }
-      });
-    } else {
-      this.startTitleBgm();
-    }
+    // BGMは継続（切り替えない）
+    // this.startTitleBgm(); ← 削除
     
     // タイトルロゴ画像
     const titleLogo = this.add.image(640, 250, 'title-logo');
@@ -233,19 +228,18 @@ export default class OpeningVideoScene extends Phaser.Scene {
   }
 
   startGame(video) {
-    if (this.titleBgm) {
-      this.titleBgm.stop();
+    console.log('Starting game from OpeningVideoScene');
+    
+    // BGMを停止
+    const bgm = this.game.registry.get('openingBGM');
+    if (bgm) {
+      bgm.stop();
+      this.game.registry.set('openingBGM', null);
+      console.log('Opening BGM stopped');
     }
+    
     video.destroy();
     this.scene.stop('OpeningVideoScene');
     this.scene.start('PrologueScene');
-  }
-
-  startTitleBgm() {
-    this.titleBgm = this.sound.add('title-bgm', {
-      loop: true,
-      volume: 0.3
-    });
-    this.titleBgm.play();
   }
 }

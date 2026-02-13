@@ -1,18 +1,12 @@
 import Phaser from 'phaser';
-import LogoScene from './scenes/LogoScene';
-import OpeningVideoScene from './scenes/OpeningVideoScene';
-import DebugMenuScene from './scenes/DebugMenuScene';
-import PrologueScene from './scenes/PrologueScene';
-import EligiaTitleScene from './scenes/EligiaTitleScene';
-import DarknessScene from './scenes/DarknessScene';
-import LeiguaScene from './scenes/LeiguaScene';
-import ChaseScene from './scenes/ChaseScene';
-import AgairudoTitleScene from './scenes/AgairudoTitleScene';
-import TrialScene from './scenes/TrialScene';
-import AjadraScene from './scenes/AjadraScene';
-import DoorSelectionScene from './scenes/DoorSelectionScene';
-import JobConfirmScene from './scenes/JobConfirmScene';
-import TownScene from './scenes/TownScene';
+import LogoScene from './scenes/common/LogoScene';
+import OpeningVideoScene from './scenes/common/OpeningVideoScene';
+import DebugMenuScene from './scenes/common/DebugMenuScene';
+import PrologueScene from './scenes/common/PrologueScene';
+import DarknessScene from './scenes/common/DarknessScene';
+import EligiaTitleScene from './scenes/eligia/EligiaTitleScene';
+import LeiguaScene from './scenes/eligia/LeiguaScene';
+import DeviationScene from './scenes/eligia/DeviationScene';
 
 // 試練シーンは後で実装
 // import WarriorTrialScene from './scenes/WarriorTrialScene';
@@ -38,17 +32,8 @@ const config = {
     EligiaTitleScene,
     DarknessScene,
     LeiguaScene,
-    ChaseScene,
-    AgairudoTitleScene,
-    TrialScene,         // これは後で ChaseScene に改造
-    AjadraScene,
-    DoorSelectionScene,
-    JobConfirmScene,
-    TownScene
-    // 試練シーンは後で追加
-    // WarriorTrialScene,
-    // MageTrialScene,
-    // ScrumMasterTrialScene
+    DeviationScene
+    // アーカイブされたシーンは _archive/ に移動済み
   ],
   physics: {
     default: 'arcade',
@@ -70,6 +55,9 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
+// ★ゲームインスタンスをグローバルに公開（デバッグ用）
+window.game = game;
 
 // デバッグメニューのキーバインド（Dキー）
 if (ENABLE_DEBUG_MENU) {
